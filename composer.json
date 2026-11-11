@@ -1,0 +1,23 @@
+{
+    "name": "vision-studio-ai/application",
+    "description": "Foundation for the Vision Studio AI web application",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+        "serve": "\"C:\\wamp64\\bin\\php\\php8.3.28\\php.exe\" -S 127.0.0.1:8000 -t public public/router.php",
+        "test": "\"C:\\wamp64\\bin\\php\\php8.3.28\\php.exe\" tests/run.php",
+        "test-auth": "\"C:\\wamp64\\bin\\php\\php8.3.28\\php.exe\" tests/auth.php",
+        "test-email-verification": "\"C:\\wamp64\\bin\\php\\php8.3.28\\php.exe\" tests/email_verification.php",
+        "test-password-reset": "\"C:\\wamp64\\bin\\php\\php8.3.28\\php.exe\" tests/password_reset.php",
+        "migrate": "\"C:\\wamp64\\bin\\php\\php8.3.28\\php.exe\" database/migrate.php"
+    }
+}

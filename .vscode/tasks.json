@@ -1,0 +1,73 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Vision Studio AI: Serve with WAMP PHP 8.3.28",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.vscode\\start-server.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "vision-studio-ai-dev-server",
+                "pattern": {
+                    "regexp": "^(.*)$",
+                    "message": 1
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^Launching Vision Studio AI development server on http://127\\.0\\.0\\.1:8000 with WAMP PHP 8\\.3\\.28\\.$",
+                    "endsPattern": "^(Vision Studio AI server already running on http://127\\.0\\.0\\.1:8000\\.|.*PHP 8\\.3\\.28 Development Server \\(http://127\\.0\\.0\\.1:8000\\) started).*$"
+                }
+            },
+            "runOptions": {
+                "runOn": "folderOpen",
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "Vision Studio AI: Run migrations with WAMP PHP 8.3.28",
+            "type": "process",
+            "command": "C:\\wamp64\\bin\\php\\php8.3.28\\php.exe",
+            "args": [
+                "database/migrate.php"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Vision Studio AI: Run regression tests with WAMP PHP 8.3.28",
+            "type": "process",
+            "command": "C:\\wamp64\\bin\\php\\php8.3.28\\php.exe",
+            "args": [
+                "tests/run.php"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Vision Studio AI: Run authentication tests with WAMP PHP 8.3.28",
+            "type": "process",
+            "command": "C:\\wamp64\\bin\\php\\php8.3.28\\php.exe",
+            "args": [
+                "tests/auth.php"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
