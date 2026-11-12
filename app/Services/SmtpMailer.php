@@ -78,14 +78,21 @@ final class SmtpMailer implements PasswordResetMailer
             $this->command($socket, 'MAIL FROM:<' . $fromAddress . '>', [250]);
             $this->command($socket, 'RCPT TO:<' . $recipient . '>', [250, 251]);
             $this->command($socket, 'DATA', [354]);
-            $this->writeMessage($socket, $this->message(
+            $message = $this->message(
                 $recipient,
                 $fromAddress,
                 $fromName,
                 $subject,
                 $htmlBody,
                 $textBody
-            ));
+            );
+            $message = preg_replace('/(?m)^\./', '..', $message);
+
+            if (!is_string($message)) {
+                throw new RuntimeException('Unable to prepare the SMTP email message.');
+            }
+
+            $this->writeMessage($socket, $message . ".\r\n");
             $this->expect($socket, [250]);
             $this->command($socket, 'QUIT', [221]);
         } finally {
